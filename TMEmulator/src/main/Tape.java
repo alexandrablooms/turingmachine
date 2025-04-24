@@ -72,7 +72,7 @@ public class Tape {
     /**
      * A copy of the tape.
      */
-    public Tape copy() {
+    public Tape copyTape() {
         Tape newTape = new Tape("", blankSymbol);
         newTape.headPosition = this.headPosition;
         newTape.tapeContents = new HashMap<>(this.tapeContents);
