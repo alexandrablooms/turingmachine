@@ -2,7 +2,7 @@ package main;
 
 public class TMConfiguration {
     private String currentState; // current state of the Turing machine (q1, q2, q3, etc.)
-    private Tape tape; // tape with it's corrent content and head position
+    private Tape tape; // tape with its current content and head position
     private int stepCount; // number of steps executed to reach this configuration
 
     /**
@@ -65,6 +65,20 @@ public class TMConfiguration {
         sb.append(tapeContent.substring(headPosition));
 
         return sb.toString();
+    }
+
+    /**
+     * Set the current state of the Turing machine.
+     */
+    public void setCurrentState(String currentState) {
+        this.currentState = currentState;
+    }
+
+    /**
+     * Set step count.
+     */
+    public void setStepCount(int stepCount) {
+        this.stepCount++;
     }
 
     /**
