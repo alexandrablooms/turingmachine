@@ -2,6 +2,10 @@ package main;
 
 import java.util.HashMap;
 
+/**
+ * Tape class represents the tape of a Turing machine.
+ * It allows reading and writing symbols, moving the head, and getting the content of the tape.
+ */
 public class Tape {
     private HashMap<Integer, Character> tapeContents; // int = position, char = symbol
     private int headPosition; // current position of the head

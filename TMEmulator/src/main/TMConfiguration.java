@@ -1,5 +1,8 @@
 package main;
 
+/**
+ * TMConfiguration class represents a configuration of a Turing machine.
+ */
 public class TMConfiguration {
     private String currentState; // current state of the Turing machine (q1, q2, q3, etc.)
     private Tape tape; // tape with its current content and head position
