@@ -2,6 +2,7 @@ package main;
 
 /**
  * TMConfiguration class represents a configuration of a Turing machine.
+ * It includes the current state, tape content, and step count.
  */
 public class TMConfiguration {
     private String currentState; // current state of the Turing machine (q1, q2, q3, etc.)
@@ -9,7 +10,9 @@ public class TMConfiguration {
     private int stepCount; // number of steps executed to reach this configuration
 
     /**
-     * Constructor for TMConfiguration to create a new configuration.
+     * Constructor for TMConfiguration to create a new initial configuration
+     * @param initialState The initial state of the Turing machine
+     * @param tape The initial tape
      */
     public TMConfiguration(String initialState, Tape tape) {
         this.currentState = initialState;
@@ -18,7 +21,10 @@ public class TMConfiguration {
     }
 
     /**
-     * Constructor for TMConfiguration to create a configuration during computation.
+     * Constructor for TMConfiguration to create a configuration during computation
+     * @param currentState The current state of the Turing machine
+     * @param tape The current tape
+     * @param stepCount The number of steps executed
      */
     public TMConfiguration(String currentState, Tape tape, int stepCount) {
         this.currentState = currentState;
@@ -27,21 +33,24 @@ public class TMConfiguration {
     }
 
     /**
-     * Get the current state of the Turing machine.
+     * Get the current state of the Turing machine
+     * @return The current state
      */
     public String getCurrentState() {
         return this.currentState;
     }
 
     /**
-     * Get the tape of the Turing machine.
+     * Get the tape of the Turing machine
+     * @return The tape
      */
     public Tape getTape() {
         return this.tape;
     }
 
     /**
-     * Get the number of steps executed to reach this configuration.
+     * Get the number of steps executed to reach this configuration
+     * @return The step count
      */
     public int getStepCount() {
         return this.stepCount;
@@ -51,48 +60,52 @@ public class TMConfiguration {
      * Create a string representation of the current configuration.
      * Format: X1X2...X{i-1}qiX{i}X{i+1}...Xn
      * where q - current state, placed before the symbol it's reading
+     * @return A string representation of the configuration
      */
     @Override
     public String toString() {
-        String tapeContent = tape.getTapeContent(15, 15);
-        int headPosition = 15;
-        StringBuilder sb = new StringBuilder();
+        // Get tape content before the head
+        String before = tape.getTapeContentBefore(15);
 
-        // add symbols before the head
-        sb.append(tapeContent.substring(0, headPosition));
+        // Get the current symbol
+        char currentSymbol = tape.readSymbol();
 
-        // add state at the head position
-        sb.append(currentState);
+        // Get tape content after the head
+        String after = tape.getTapeContentAfter(15);
 
-        // add symbols at and after the head
-        sb.append(tapeContent.substring(headPosition));
-
-        return sb.toString();
+        // Build the configuration string: [before][state][currentSymbol][after]
+        return before + currentState + currentSymbol + after;
     }
 
     /**
-     * Set the current state of the Turing machine.
+     * Set the current state of the Turing machine
+     * @param currentState The new state
      */
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
     }
 
     /**
-     * Set step count.
+     * Increment the step count
+     */
+    public void incrementStepCount() {
+        this.stepCount++;
+    }
+
+    /**
+     * Set the step count
+     * @param stepCount The new step count
      */
     public void setStepCount(int stepCount) {
         this.stepCount++;
     }
 
     /**
-     * Copy of the current configuration.
+     * Create a copy of the current configuration
+     * @return A new TMConfiguration object with the same state, tape, and step count
      */
     public TMConfiguration copyTMConfig() {
-        TMConfiguration newTMConfig = new TMConfiguration(this.currentState, this.tape.copyTape(), this.stepCount);
-        newTMConfig.currentState = this.currentState;
-        newTMConfig.tape = this.tape.copyTape();
-        newTMConfig.stepCount = this.stepCount;
-        return newTMConfig;
+        return new TMConfiguration(this.currentState, this.tape.copyTape(), this.stepCount);
     }
 }
 
