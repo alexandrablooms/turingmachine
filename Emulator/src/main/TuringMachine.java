@@ -293,7 +293,7 @@ public class TuringMachine {
         System.out.println("├─────────────────────────────────────────────────────────────────┤");
 
         // Create a visual representation of the tape
-        System.out.println("│ Tape:                                                           │");
+        System.out.println("│ Tape:");
         System.out.println("│ " + getTapeDisplay());
 
         // Create a pointer to show the head position
