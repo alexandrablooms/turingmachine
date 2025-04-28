@@ -205,15 +205,14 @@ public class TMEmulator {
      */
     private static String getInput(Scanner scanner) {
         System.out.println("\nSelect input format:");
-        System.out.println("1. Binary number (e.g. '01101')");
+        System.out.println("1. Binary number");
         System.out.println("2. Decimal number (will be converted to binary)");
-        System.out.println("3. Text string with characters (e.g. '01XYZabc')");
 
-        System.out.print("\nEnter your choice (1-3): ");
+        System.out.print("\nEnter your choice (1-2): ");
         int inputFormat;
         try {
             inputFormat = Integer.parseInt(scanner.nextLine().trim());
-            if (inputFormat < 1 || inputFormat > 3) {
+            if (inputFormat < 1 || inputFormat > 2) {
                 System.out.println("Invalid choice. Using binary input mode.");
                 inputFormat = BINARY_INPUT_FORMAT;
             }

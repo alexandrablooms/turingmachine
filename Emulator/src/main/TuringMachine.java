@@ -148,7 +148,6 @@ public class TuringMachine {
                 int newSymbolValue = charToSymbol.size() + 1;
                 addSymbolMapping(c, newSymbolValue);
                 tape.add(newSymbolValue);
-                System.out.println("Note: Added new symbol mapping for '" + c + "' → X" + newSymbolValue);
             }
         }
     }
