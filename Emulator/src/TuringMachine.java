@@ -346,10 +346,10 @@ public class TuringMachine {
      */
     public int getUnaryZerosValue() {
         int count = 0;
-        for (int i = 0; i < tape.size(); i++) {
-            if (tape.get(i) == SYMBOL_ZERO) {
+        for (Integer integer : tape) {
+            if (integer == SYMBOL_ZERO) {
                 count++;
-            } else if (tape.get(i) != SYMBOL_BLANK) {
+            } else if (integer != SYMBOL_BLANK) {
                 break; // Stop counting on non-zero, non-blank
             }
         }
