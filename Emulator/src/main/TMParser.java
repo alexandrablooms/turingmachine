@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class TMParser {
      * Parses a binary string encoding of a Turing machine and converts it to a list of transitions.
      *
      * @param encoding The binary encoding of the Turing machine.
-     * @return A list of Transition objects representing the encoded Turing machine.
+     * @return A list of main.Transition objects representing the encoded Turing machine.
      */
     public static List<Transition> parseTuringMachine(String encoding) {
         List<Transition> transitions = new ArrayList<>();

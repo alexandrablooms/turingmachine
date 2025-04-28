@@ -1,3 +1,5 @@
+package main;
+
 /**
  * Represents a transition in a Turing Machine.
  * <p>
