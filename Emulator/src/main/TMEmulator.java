@@ -12,7 +12,7 @@ import java.util.Scanner;
  * Main emulator class that handles user interaction for the Universal Turing Machine.
  * <p>
  * This class provides a command-line interface for users to:
- * - Input a Turing Machine encoding (directly, from a file, or use predefined examples)
+ * - Input a Turing Machine encoding (directly, from a file, or use predefined TMs)
  * - Specify input for the Turing Machine
  * - Choose an execution mode (step-by-step or automatic run)
  * - View the machine's configuration and results

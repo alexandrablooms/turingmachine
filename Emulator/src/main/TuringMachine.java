@@ -289,6 +289,7 @@ public class TuringMachine {
                 (currentState == acceptState ? " (Accepting)" : ""));
         System.out.println("│ Step Count: " + steps);
         System.out.println("│ Head Position: " + headPosition);
+        System.out.println("| Tape content: " + getTapeContent());
         System.out.println("├─────────────────────────────────────────────────────────────────┤");
 
         // Create a visual representation of the tape

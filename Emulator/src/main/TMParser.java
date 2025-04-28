@@ -6,9 +6,8 @@ import java.util.List;
 /**
  * Parser for converting binary string encodings to Turing Machine transitions.
  * <p>
- * This class handles the parsing of binary encoded Turing Machine descriptions
- * according to the encoding scheme defined in the lecture materials. The encoding
- * represents transitions as sequences of 0s and 1s, where:
+ * This class handles the parsing of binary encoded Turing Machine descriptions.
+ * The encoding represents transitions as sequences of 0s and 1s, where:
  * - States are encoded as sequences of 0s (q_i is encoded as i consecutive 0s)
  * - Symbols are encoded as sequences of 0s (X_j is encoded as j consecutive 0s)
  * - Directions are encoded as sequences of 0s (L is 1 consecutive 0, R is 2 consecutive 0s)
