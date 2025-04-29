@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.MAX_VALUE;
+
 /**
  * Main emulator class that handles user interaction for the Universal Turing Machine.
  * <p>
@@ -25,7 +27,7 @@ public class TMEmulator {
     /**
      * Maximum step limit to prevent infinite loops.
      */
-    private static final int STEP_LIMIT = 100000000;
+    private static final int STEP_LIMIT = MAX_VALUE;
 
     private static final int BINARY_INPUT_FORMAT = 1;
     private static final int DECIMAL_INPUT_FORMAT = 2;
