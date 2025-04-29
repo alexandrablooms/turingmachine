@@ -205,8 +205,8 @@ public class TMEmulator {
      */
     private static String getInput(Scanner scanner) {
         System.out.println("\nSelect input format:");
-        System.out.println("1. Binary number");
-        System.out.println("2. Decimal number (will be converted to binary)");
+        System.out.println("1. Unary number");
+        System.out.println("2. Decimal number (will be converted to unary)");
 
         System.out.print("\nEnter your choice (1-2): ");
         int inputFormat;
