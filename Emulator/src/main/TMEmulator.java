@@ -29,13 +29,20 @@ public class TMEmulator {
 
     private static final int BINARY_INPUT_FORMAT = 1;
     private static final int DECIMAL_INPUT_FORMAT = 2;
-    private static final String QUIT_COMMAND = "q";
+
+    private static final int STEP_MODE = 1;
+    private static final int RUN_MODE = 2;
+
+    /**
+     * Delay between steps in step mode (in milliseconds)
+     */
+    private static final int STEP_DELAY = 500; // 500ms = 0.5 seconds
 
     /**
      * Main method to run the Universal Turing Machine emulator.
      * Supports two modes:
-     * 1. Step mode: executes one step at a time with user confirmation
-     * 2. Run mode: executes all steps automatically and shows the result
+     * 1. Step mode: automatically executes steps with a delay between each
+     * 2. Run mode: executes all steps at once and shows final result
      *
      * @param args Command-line arguments (not used).
      */
@@ -213,11 +220,11 @@ public class TMEmulator {
         try {
             inputFormat = Integer.parseInt(scanner.nextLine().trim());
             if (inputFormat < 1 || inputFormat > 2) {
-                System.out.println("Invalid choice. Using binary input mode.");
+                System.out.println("Invalid choice. Using direct input mode.");
                 inputFormat = BINARY_INPUT_FORMAT;
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Using binary input mode.");
+            System.out.println("Invalid input. Using direct input mode.");
             inputFormat = BINARY_INPUT_FORMAT;
         }
 
@@ -236,8 +243,8 @@ public class TMEmulator {
                 input = unaryBuilder.toString();
                 System.out.println("Converted to unary: " + input);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid decimal number. Using '0' instead.");
-                input = "0";
+                System.out.println("Invalid decimal number. Using '1' instead.");
+                input = "1";
             }
         }
 
@@ -261,35 +268,30 @@ public class TMEmulator {
             mode = Integer.parseInt(scanner.nextLine().trim());
             if (mode < 1 || mode > 2) {
                 System.out.println("Invalid choice. Using run mode.");
-                mode = 2;
+                mode = RUN_MODE;
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Using run mode.");
-            mode = 2;
+            mode = RUN_MODE;
         }
 
         return mode;
     }
 
     /**
-     * Executes the selected mode (step or run).
+     * Executes the selected mode (auto-step or run).
      *
      * @param tm      The Turing Machine to execute.
      * @param scanner The Scanner used for input.
-     * @param mode    The execution mode (1 for step mode, 2 for run mode).
+     * @param mode    The execution mode (1 for auto-step mode, 2 for run mode).
      */
     private static void executeSelectedMode(TuringMachine tm, Scanner scanner, int mode) {
-        if (mode == 1) {
-            System.out.println("\nSTEP MODE: Press Enter to proceed with each step (or 'q' to quit)...");
+        if (mode == STEP_MODE) {
+            // Auto-step mode
+            System.out.println("\nSTEP MODE: Steps automatically with " + (STEP_DELAY/1000.0) + "s delay (press Ctrl+C to stop)...");
 
             boolean running = true;
             while (running && tm.getSteps() < STEP_LIMIT) {
-                String command = scanner.nextLine();
-                if (command.equals(QUIT_COMMAND)) {
-                    System.out.println("Execution cancelled by user.");
-                    break;
-                }
-
                 boolean stepped = tm.step();
                 System.out.println("\nAfter step " + tm.getSteps() + ":");
                 tm.printConfiguration();
@@ -298,12 +300,21 @@ public class TMEmulator {
                     System.out.println("Machine halted!");
                     running = false;
                 }
+
+                // Wait for the specified delay
+                try {
+                    Thread.sleep(STEP_DELAY);
+                } catch (InterruptedException e) {
+                    System.out.println("Execution interrupted.");
+                    break;
+                }
             }
 
             if (tm.getSteps() >= STEP_LIMIT) {
                 System.out.println("Execution terminated - step limit reached!");
             }
         } else {
+            // Run mode
             System.out.println("\nRUN MODE: Executing all steps automatically...");
 
             long startTime = System.currentTimeMillis();
@@ -325,6 +336,7 @@ public class TMEmulator {
             }
 
             tm.printConfiguration();
+            System.out.println("Final tape content: " + tm.getTapeContent());
         }
     }
 
