@@ -25,7 +25,7 @@ public class TMEmulator {
     /**
      * Maximum step limit to prevent infinite loops.
      */
-    private static final int STEP_LIMIT = 10000;
+    private static final int STEP_LIMIT = 1000000;
 
     private static final int BINARY_INPUT_FORMAT = 1;
     private static final int DECIMAL_INPUT_FORMAT = 2;
@@ -228,8 +228,13 @@ public class TMEmulator {
         if (inputFormat == DECIMAL_INPUT_FORMAT) {
             try {
                 int decimal = Integer.parseInt(input);
-                input = Integer.toBinaryString(decimal);
-                System.out.println("Converted to binary: " + input);
+                // Convert decimal to unary (n consecutive 1s)
+                StringBuilder unaryBuilder = new StringBuilder();
+                for (int i = 0; i < decimal; i++) {
+                    unaryBuilder.append('1');
+                }
+                input = unaryBuilder.toString();
+                System.out.println("Converted to unary: " + input);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid decimal number. Using '0' instead.");
                 input = "0";
