@@ -288,7 +288,7 @@ public class TMEmulator {
     private static void executeSelectedMode(TuringMachine tm, Scanner scanner, int mode) {
         if (mode == STEP_MODE) {
             // Auto-step mode
-            System.out.println("\nSTEP MODE: Steps automatically with " + (STEP_DELAY/1000.0) + "s delay (press Ctrl+C to stop)...");
+            System.out.println("\nSTEP MODE: Steps automatically with " + (STEP_DELAY/1000.0) + "s delay");
 
             boolean running = true;
             while (running && tm.getSteps() < STEP_LIMIT) {
