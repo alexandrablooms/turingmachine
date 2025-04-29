@@ -25,7 +25,7 @@ public class TMEmulator {
     /**
      * Maximum step limit to prevent infinite loops.
      */
-    private static final int STEP_LIMIT = 1000000;
+    private static final int STEP_LIMIT = 100000000;
 
     private static final int BINARY_INPUT_FORMAT = 1;
     private static final int DECIMAL_INPUT_FORMAT = 2;
